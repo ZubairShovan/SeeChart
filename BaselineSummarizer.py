@@ -1,15 +1,23 @@
-import json  # Serialization: process of encoding data into JSON format (like converting a Python list to JSON). Deserialization: process of decoding JSON data back into native objects you can work with (like reading JSON data into a Python list)
+import \
+    json  # Serialization: process of encoding data into JSON format (like converting a Python list to JSON). Deserialization: process of decoding JSON data back into native objects you can work with (like reading JSON data into a Python list)
 
 import math  # To use mathematical functions
-import re  # Regular Expression, The functions in this module let you check if a particular string matches a given regular expression
+import \
+    re  # Regular Expression, The functions in this module let you check if a particular string matches a given regular expression
 import random  # random number generation. random() function, generates random numbers between 0 and 1.
 from random import randint  # randint() is an inbuilt function of the random module in Python3
-from statistics import mean, median, stdev  # mean() function can be used to calculate mean/average of a given list of numbers.
-from operator import itemgetter  # operator is a built-in module providing a set of convenient operators #operator. itemgetter(n) assumes an iterable object (e.g. list, tuple, set) as input, and fetches the n-th element out of it. If multiple items are specified, returns a tuple of lookup values.
-from scipy.stats import linregress  # Calculate a linear least-squares regression for two sets of measurements. Parameters x, yarray_like.
-from sklearn import preprocessing  # The sklearn. preprocessing package provides several functions that transform your data before feeding it to the algorithm.
-import pandas as pd  # presents a diverse range of utilities, ranging from parsing multiple file formats to converting an entire data table into a NumPy matrix array.
-import numpy as np  # NumPy is a general-purpose array-processing package. It provides a high-performance multidimensional array object, and tools for working with these arrays.
+from statistics import mean, median, \
+    stdev  # mean() function can be used to calculate mean/average of a given list of numbers.
+from operator import \
+    itemgetter  # operator is a built-in module providing a set of convenient operators #operator. itemgetter(n) assumes an iterable object (e.g. list, tuple, set) as input, and fetches the n-th element out of it. If multiple items are specified, returns a tuple of lookup values.
+from scipy.stats import \
+    linregress  # Calculate a linear least-squares regression for two sets of measurements. Parameters x, yarray_like.
+from sklearn import \
+    preprocessing  # The sklearn. preprocessing package provides several functions that transform your data before feeding it to the algorithm.
+import \
+    pandas as pd  # presents a diverse range of utilities, ranging from parsing multiple file formats to converting an entire data table into a NumPy matrix array.
+import \
+    numpy as np  # NumPy is a general-purpose array-processing package. It provides a high-performance multidimensional array object, and tools for working with these arrays.
 
 dataPath = 'Data/test/testData.txt'
 titlePath = 'Data/test/testTitle.txt'
@@ -49,9 +57,11 @@ def globalTrendBarChart(yValueArr):
 def match_trend(trend1, trend2):
     if trend1 in ["increased", "grew", "climbed", "risen"] and trend2 in ["increased", "grew", "climbed", "risen"]:
         return 1
-    elif trend1 in ["decreased", "declined", "reduced", "lowered"] and trend2 in ["decreased", "declined", "reduced", "lowered"]:
+    elif trend1 in ["decreased", "declined", "reduced", "lowered"] and trend2 in ["decreased", "declined", "reduced",
+                                                                                  "lowered"]:
         return 1
-    elif trend1 in ["stable", "constant", "unchanged", "unvaried"] and trend2 in ["stable", "constant", "unchanged", "unvaried"]:
+    elif trend1 in ["stable", "constant", "unchanged", "unvaried"] and trend2 in ["stable", "constant", "unchanged",
+                                                                                  "unvaried"]:
         return 1
     else:
         return 0
@@ -131,7 +141,6 @@ def getMagnitude(normalizedSlope):
     return magnitude
 
 
-
 ## shehnaz-- The functions created by me
 
 # Initilizing constant values for the fucntions below
@@ -157,25 +166,24 @@ def getMagnitude(normalizedSlope):
 # gradually_rate= 50
 # rapidly_rate= 70
 
-#These rate stay constant
-constant= 5
-sig= 10
-gradual=20
-rapid= 70
+# These rate stay constant
+constant = 5
+sig = 10
+gradual = 20
+rapid = 70
 
 ## These rate chnages dynamically with c_rate and mean(percentChnageArr)
 constant_rate = constant
 significant_rate = 0
-gradually_rate= gradual
-rapidly_rate= rapid
+gradually_rate = gradual
+rapidly_rate = rapid
 
+c_rate = 0.6  # 0.6 avg(% chnage)*0.1 # Meaning any chnage less than 5% is considered roughly constant slope  # Determines if a trend is increasing, decreasing or constant
+s_rate = 1.2  # 1.2
+g_rate = 2  # 2
+r_rate = 3  # 3
 
-c_rate = 0.6 #0.6 avg(% chnage)*0.1 # Meaning any chnage less than 5% is considered roughly constant slope  # Determines if a trend is increasing, decreasing or constant
-s_rate = 1.2 #1.2
-g_rate = 2 #2
-r_rate = 3 #3
-
-zigZagNum= 30 # The number of y values there needs for chart to be considered zig zag
+zigZagNum = 30  # The number of y values there needs for chart to be considered zig zag
 
 
 def directionTrend(new, old, constant_rate):
@@ -262,6 +270,7 @@ def globalRateOfChange(percentChange, c, g, r):
     elif (absChnage > constant_rate):
         return "slightly"
 
+
 def percentChnageFunc(new, old):
     difference = new - old
     if (old != 0):
@@ -275,10 +284,10 @@ def percentChnageFunc(new, old):
 def percentChnageRangeFunc(new, old, maximum):
     difference = new - old
     if (old != 0):
-        percentageChange = ((new - old) / (maximum-0)) * 100
+        percentageChange = ((new - old) / (maximum - 0)) * 100
     else:
         old = 0.00000000001
-        percentageChange = ((new - old) / (maximum-0)) * 100
+        percentageChange = ((new - old) / (maximum - 0)) * 100
     return percentageChange
 
 
@@ -289,7 +298,8 @@ def increaseDecrease(x):
         return "decrease"
     else:
         return "stays the same"
-    
+
+
 def increasedDecreased(x):
     if (x == "increasing"):
         return "increased"
@@ -298,41 +308,46 @@ def increasedDecreased(x):
     else:
         return "remained stable"
 
+
 def get_indexes(l, val):
     return l.tolist().index(val)
 
+
 def get_indexes_max_value(l):
-    max_value = max(l) # key=lambda x:float(x))
+    max_value = max(l)  # key=lambda x:float(x))
     return [i for i, x in enumerate(l) if x == max(l)]
 
 
 def get_indexes_min_value(l):
-    min_value = min(l) # key=lambda x:float(x))
+    min_value = min(l)  # key=lambda x:float(x))
     return [i for i, x in enumerate(l) if x == min(l)]
 
+
 def stringToFloat(str):
-    list= []
+    list = []
     for i in str:
-        extractNums= re.findall(r"[-+]?\d*\.\d+|\d+", i)
-        num= extractNums[0]
-        list.append(num) 
+        extractNums = re.findall(r"[-+]?\d*\.\d+|\d+", i)
+        num = extractNums[0]
+        list.append(num)
     return list
+
 
 def floatToStr(x):
     for i in range(0, len(x)):
-        x[i]=str(x[i])
+        x[i] = str(x[i])
     return x
-        
+
+
 def commaAnd(arr):
-    if (len(arr)<2):
-        arr=arr[0]
+    if (len(arr) < 2):
+        arr = arr[0]
     else:
-        slice1= arr[:len(arr)-1]
+        slice1 = arr[:len(arr) - 1]
         # print(slice1)
-        slice2=  ", ".join(slice1)
-        slice2+= ", and " +  arr[-1]
+        slice2 = ", ".join(slice1)
+        slice2 += ", and " + arr[-1]
         # print(slice2)
-        arr= slice2
+        arr = slice2
     return arr
 
 
@@ -351,7 +366,8 @@ def summarize(data, all_y_label, name, title, partial=None):
     # count += 1
     datum = data.split()  # Splits data where space is found. So datum[0] is groups of data with no space. e.g. Country|Singapore|x|bar_chart                 `
     # check if data is multi column
-    columnType = datum[0].split('|')[2].isnumeric()  # e.g. Country|Singapore|x|bar_chart, ...  x means single, numeric means multiline
+    columnType = datum[0].split('|')[
+        2].isnumeric()  # e.g. Country|Singapore|x|bar_chart, ...  x means single, numeric means multiline
 
     # print("Column Type -> " + str(columnType) + " this is -> " + str(datum[0].split('|')[2]))
 
@@ -381,7 +397,6 @@ def summarize(data, all_y_label, name, title, partial=None):
         # print(labelArr)
 
         stringLabels = [' '.join(label) for label in labelArr]  # e.g. stringLabels = ['Year', 'Export', 'Import']
-
 
         # Get values
         valueArr = [[] for i in range(columnCount)]
@@ -535,17 +550,36 @@ def summarize(data, all_y_label, name, title, partial=None):
 
             rand_category_index = random.randint(0, number_of_group - 1)
             global_max_min_categorical = []
-            global_max_min_categorical.append(" For " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + ", " + str(groupedLabels[rand_category_index+1]) + " had the highest " + y_label + " among all " + str(rowCount) + " " + str(groupedLabels[0]) + "s and it has the lowest " + y_label + " in " + str(groupedLabels[0]) + " " + str(min_row[rand_category_index]) + ". ")
-            global_max_min_categorical.append(" For " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + ", " + str(groupedLabels[rand_category_index+1]) + " had the maximum " + y_label + " and it saw the lowest in " + str(groupedLabels[0]) + " " + str(min_row[rand_category_index]) + " out of all " + str(rowCount) + " " + str(groupedLabels[0]) + "s. ")
-            global_max_min_categorical.append(" Among all the " + str(groupedLabels[0]) + "s, " + str(groupedLabels[rand_category_index+1]) + " had the highest " + y_label + " in " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + " and lowest " + y_label + " in " + str(groupedLabels[0]) + " " + str(min_row[rand_category_index]) + ". ")
-            global_max_min_categorical.append(" Among all the " + str(groupedLabels[0]) + "s, " + str(groupedLabels[rand_category_index+1]) + " had the highest " + y_label + " " + str(max_row_val[rand_category_index]) + " in " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + " and lowest value " + str(min_row_val[rand_category_index]) + " in " + str(groupedLabels[0]) + " " + str(min_row[rand_category_index]) + ". ")
+            global_max_min_categorical.append(
+                " For " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + ", " + str(
+                    groupedLabels[rand_category_index + 1]) + " had the highest " + y_label + " among all " + str(
+                    rowCount) + " " + str(groupedLabels[0]) + "s and it has the lowest " + y_label + " in " + str(
+                    groupedLabels[0]) + " " + str(min_row[rand_category_index]) + ". ")
+            global_max_min_categorical.append(
+                " For " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + ", " + str(groupedLabels[
+                                                                                                           rand_category_index + 1]) + " had the maximum " + y_label + " and it saw the lowest in " + str(
+                    groupedLabels[0]) + " " + str(min_row[rand_category_index]) + " out of all " + str(
+                    rowCount) + " " + str(groupedLabels[0]) + "s. ")
+            global_max_min_categorical.append(" Among all the " + str(groupedLabels[0]) + "s, " + str(
+                groupedLabels[rand_category_index + 1]) + " had the highest " + y_label + " in " + str(
+                groupedLabels[0]) + " " + str(max_row[rand_category_index]) + " and lowest " + y_label + " in " + str(
+                groupedLabels[0]) + " " + str(min_row[rand_category_index]) + ". ")
+            global_max_min_categorical.append(" Among all the " + str(groupedLabels[0]) + "s, " + str(
+                groupedLabels[rand_category_index + 1]) + " had the highest " + y_label + " " + str(
+                max_row_val[rand_category_index]) + " in " + str(groupedLabels[0]) + " " + str(
+                max_row[rand_category_index]) + " and lowest value " + str(
+                min_row_val[rand_category_index]) + " in " + str(groupedLabels[0]) + " " + str(
+                min_row[rand_category_index]) + ". ")
 
             extrema_categorical = global_max_min_categorical[random.randint(0, len(global_max_min_categorical) - 1)]
-            print("Extrema [min/max][categorical] : " + global_max_min_categorical[random.randint(0, len(global_max_min_categorical) - 1)])
+            print("Extrema [min/max][categorical] : " + global_max_min_categorical[
+                random.randint(0, len(global_max_min_categorical) - 1)])
 
             trend_global = None
 
-            if groupedLabels[0].lower() == "year" or groupedLabels[0].lower() == "years" or groupedLabels[0].lower() == "month" or groupedLabels[0].lower() == "months" or groupedLabels[0].lower() == "quarter" or groupedLabels[0].lower() == "quarters":
+            if groupedLabels[0].lower() == "year" or groupedLabels[0].lower() == "years" or groupedLabels[
+                0].lower() == "month" or groupedLabels[0].lower() == "months" or groupedLabels[
+                0].lower() == "quarter" or groupedLabels[0].lower() == "quarters":
                 category_trend = []
 
                 for a in range(1, len(arr[0])):
@@ -555,18 +589,32 @@ def summarize(data, all_y_label, name, title, partial=None):
                 # print(category_trend)
                 categorical_global_trend = []
 
-                if match_trend(category_trend[rand_category_index], category_trend[rand_category_index-1]):
-                    categorical_global_trend.append(" Over the " + str(rowCount) + " " + groupedLabels[0] + "s, the " + y_label + " for both " + str(groupedLabels[rand_category_index + 1]) + " and " + str(groupedLabels[rand_category_index]) + " have " + category_trend[rand_category_index] + ". ")
-                    categorical_global_trend.append(" All through the " + groupedLabels[0] + "s, similar trend was observed for " + str(groupedLabels[rand_category_index + 1]) + " and " + str(groupedLabels[rand_category_index]) + ". In both cases, the " + y_label + " have " + category_trend[rand_category_index] + ". ")
+                if match_trend(category_trend[rand_category_index], category_trend[rand_category_index - 1]):
+                    categorical_global_trend.append(" Over the " + str(rowCount) + " " + groupedLabels[
+                        0] + "s, the " + y_label + " for both " + str(
+                        groupedLabels[rand_category_index + 1]) + " and " + str(
+                        groupedLabels[rand_category_index]) + " have " + category_trend[rand_category_index] + ". ")
+                    categorical_global_trend.append(
+                        " All through the " + groupedLabels[0] + "s, similar trend was observed for " + str(
+                            groupedLabels[rand_category_index + 1]) + " and " + str(
+                            groupedLabels[rand_category_index]) + ". In both cases, the " + y_label + " have " +
+                        category_trend[rand_category_index] + ". ")
                 else:
                     categorical_global_trend.append(
-                        " Over the " + str(rowCount) + " " + groupedLabels[0] + "s, the " + y_label + " for " + str(groupedLabels[rand_category_index + 1]) + " have been " + category_trend[rand_category_index] + " whereas " + category_trend[rand_category_index - 1] + " for " + str(groupedLabels[rand_category_index]) + ". ")
+                        " Over the " + str(rowCount) + " " + groupedLabels[0] + "s, the " + y_label + " for " + str(
+                            groupedLabels[rand_category_index + 1]) + " have been " + category_trend[
+                            rand_category_index] + " whereas " + category_trend[
+                            rand_category_index - 1] + " for " + str(groupedLabels[rand_category_index]) + ". ")
                     categorical_global_trend.append(
-                        " All through the " + groupedLabels[0] + "s, the " + y_label + " for " + str(groupedLabels[rand_category_index + 1]) + " have " + category_trend[rand_category_index] + ". On the other hand, for " + str(groupedLabels[rand_category_index]) + " the " + y_label + " have " + category_trend[rand_category_index - 1] + ". ")
+                        " All through the " + groupedLabels[0] + "s, the " + y_label + " for " + str(
+                            groupedLabels[rand_category_index + 1]) + " have " + category_trend[
+                            rand_category_index] + ". On the other hand, for " + str(
+                            groupedLabels[rand_category_index]) + " the " + y_label + " have " + category_trend[
+                            rand_category_index - 1] + ". ")
 
                 trend_global = categorical_global_trend[random.randint(0, len(categorical_global_trend) - 1)]
-                print("Trend [global] : " + categorical_global_trend[random.randint(0, len(categorical_global_trend) - 1)])
-
+                print("Trend [global] : " + categorical_global_trend[
+                    random.randint(0, len(categorical_global_trend) - 1)])
 
             # sorted_max_row = sorted(max_row_val)
             # print("sorted_max_row")
@@ -584,12 +632,20 @@ def summarize(data, all_y_label, name, title, partial=None):
                     max_gap_index = i
 
             max_diff_all_cat = []
-            max_diff_all_cat.append(" Out of all " + str(number_of_group) + " groups, the highest gap between the maximum and minimum " + y_label + " was found in case of " + str(groupedLabels[max_gap_index+1]) + ". ")
-            max_diff_all_cat.append(" Among the groups, " + str(groupedLabels[max_gap_index+1]) + " had the biggest difference in " + y_label + ". Where the maximum " + y_label + " was " + str(max_gap_rel) + " times larger than the minimum " + y_label + ". ")
-            max_diff_all_cat.append(" Among all " + str(number_of_group) + " groups, " + str(groupedLabels[max_gap_index+1]) + " had the gap of " + str(max_gap_abs) + " between the maximum and minimum " + y_label + " observed in " + str(groupedLabels[0]) + " " + max_row[max_gap_index] + " and " + min_row[max_gap_index] + " respectively. ")
+            max_diff_all_cat.append(" Out of all " + str(
+                number_of_group) + " groups, the highest gap between the maximum and minimum " + y_label + " was found in case of " + str(
+                groupedLabels[max_gap_index + 1]) + ". ")
+            max_diff_all_cat.append(" Among the groups, " + str(groupedLabels[
+                                                                    max_gap_index + 1]) + " had the biggest difference in " + y_label + ". Where the maximum " + y_label + " was " + str(
+                max_gap_rel) + " times larger than the minimum " + y_label + ". ")
+            max_diff_all_cat.append(" Among all " + str(number_of_group) + " groups, " + str(
+                groupedLabels[max_gap_index + 1]) + " had the gap of " + str(
+                max_gap_abs) + " between the maximum and minimum " + y_label + " observed in " + str(
+                groupedLabels[0]) + " " + max_row[max_gap_index] + " and " + min_row[max_gap_index] + " respectively. ")
 
             extrema_max_diff_in_cat = max_diff_all_cat[random.randint(0, len(max_diff_all_cat) - 1)]
-            print("Extrema [difference in a category] : " + max_diff_all_cat[random.randint(0, len(max_diff_all_cat) - 1)])
+            print("Extrema [difference in a category] : " + max_diff_all_cat[
+                random.randint(0, len(max_diff_all_cat) - 1)])
 
             max_min_difference_abs = max_row_val[rand_category_index] - min_row_val[rand_category_index]
             if min_row_val[rand_category_index] != 0:
@@ -598,16 +654,32 @@ def summarize(data, all_y_label, name, title, partial=None):
                 max_min_difference_rel = 0
 
             diff_in_category = []
-            diff_in_category.append(" The maximum " + y_label + " for " + str(groupedLabels[rand_category_index+1]) + " that was found in " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + " was " + str(max_min_difference_rel) + " times larger than the minimum " + y_label + " observed in " + str(groupedLabels[0]) + " " + str(min_row[rand_category_index]) + ". ")
-            diff_in_category.append(" There is a gap of " + str(max_min_difference_abs) + " between the highest and lowest " + y_label + " found for " + str(groupedLabels[rand_category_index+1]) + " in " + str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + " and " + str(min_row[rand_category_index]) + ". ")
-            diff_in_category.append(str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + " and " + str(min_row[rand_category_index]) + " had the biggest gap of " + str(max_min_difference_abs) + " between the highest and lowest " + y_label + " found for " + str(groupedLabels[rand_category_index+1]) + ". ")
+            diff_in_category.append(" The maximum " + y_label + " for " + str(
+                groupedLabels[rand_category_index + 1]) + " that was found in " + str(groupedLabels[0]) + " " + str(
+                max_row[rand_category_index]) + " was " + str(
+                max_min_difference_rel) + " times larger than the minimum " + y_label + " observed in " + str(
+                groupedLabels[0]) + " " + str(min_row[rand_category_index]) + ". ")
+            diff_in_category.append(" There is a gap of " + str(
+                max_min_difference_abs) + " between the highest and lowest " + y_label + " found for " + str(
+                groupedLabels[rand_category_index + 1]) + " in " + str(groupedLabels[0]) + " " + str(
+                max_row[rand_category_index]) + " and " + str(min_row[rand_category_index]) + ". ")
+            diff_in_category.append(str(groupedLabels[0]) + " " + str(max_row[rand_category_index]) + " and " + str(
+                min_row[rand_category_index]) + " had the biggest gap of " + str(
+                max_min_difference_abs) + " between the highest and lowest " + y_label + " found for " + str(
+                groupedLabels[rand_category_index + 1]) + ". ")
 
             comparison_categorical = diff_in_category[random.randint(0, len(diff_in_category) - 1)]
             print("Comparison [categorical] : " + diff_in_category[random.randint(0, len(diff_in_category) - 1)])
 
             average_stat = []
-            average_stat.append("On average, the " + str(groupedLabels[0]) + " " + sortedCategories[-1][0] + " had the highest " + y_label + " for all " + str(number_of_group) + " groups " + group_names_text + ". Whereas " + sortedCategories[0][0] + " had the lowest average " + y_label + ". ")
-            average_stat.append("Averaging all " + str(number_of_group) + " groups " + group_names_text + ", the " + str(groupedLabels[0]) + " " + sortedCategories[-1][0] + " is the maximum " + y_label + " and " + sortedCategories[0][0] + " is the minimum " + y_label + ". ")
+            average_stat.append("On average, the " + str(groupedLabels[0]) + " " + sortedCategories[-1][
+                0] + " had the highest " + y_label + " for all " + str(
+                number_of_group) + " groups " + group_names_text + ". Whereas " + sortedCategories[0][
+                                    0] + " had the lowest average " + y_label + ". ")
+            average_stat.append(
+                "Averaging all " + str(number_of_group) + " groups " + group_names_text + ", the " + str(
+                    groupedLabels[0]) + " " + sortedCategories[-1][0] + " is the maximum " + y_label + " and " +
+                sortedCategories[0][0] + " is the minimum " + y_label + ". ")
 
             compute_der_val_avg = average_stat[random.randint(0, len(average_stat) - 1)]
             print("Compute derived val [avg] : " + average_stat[random.randint(0, len(average_stat) - 1)])
@@ -615,11 +687,13 @@ def summarize(data, all_y_label, name, title, partial=None):
             global_extrema = []
             global_extrema.append(
                 " For " + str(groupedLabels[0]) + " " + str(global_max_category_xlabel) + ", " + str(
-                    global_max_category_label) + " had the highest " + y_label + " " + str(global_max) + " among the " + str(
+                    global_max_category_label) + " had the highest " + y_label + " " + str(
+                    global_max) + " among the " + str(
                     number_of_group) + " groups and in " + str(global_min_category_xlabel) + ", " + str(
                     global_min_category_label) + " had the lowest " + y_label + " " + str(global_min) + ". ")
             global_extrema.append(" Out of all " + str(number_of_group) + " groups, " + str(
-                global_max_category_label) + " had the highest " + y_label + " for " + str(groupedLabels[0]) + " " + str(
+                global_max_category_label) + " had the highest " + y_label + " for " + str(
+                groupedLabels[0]) + " " + str(
                 global_max_category_xlabel) + " and " + str(
                 global_min_category_label) + " had the lowest " + y_label + " for " + str(groupedLabels[0]) + " " + str(
                 global_min_category_xlabel) + ". ")
@@ -634,30 +708,50 @@ def summarize(data, all_y_label, name, title, partial=None):
             print("Extrema [global] : " + global_extrema[random.randint(0, len(global_extrema) - 1)])
             order_global = []
             if len(groupedLabels) > 3:
-                order_global.append(" In case of " + str(groupedLabels[0]) + " " + str(global_max_category_xlabel) + ", " + str(global_max_category_label) + " had the highest " + y_label + " " + str(global_max) + " among the " + str(number_of_group) + " groups and in " + str(global_min_category_xlabel) + ", " + str(global_min_category_label) + " had the lowest " + y_label + " " + str(global_min) + ". The second highest " + y_label + " " + str(global_2nd_max) + " was observed for " + str(global_2nd_max_category_label) + " in " + str(groupedLabels[0]) + " " + str(global_2nd_max_category_xlabel) + ". ")
-                order_global.append(" " + str(global_max_category_label) + " had the maximum " + y_label + " out of all " + str(number_of_group) + " groups in " + str(groupedLabels[0]) + " " + str(global_max_category_xlabel) + " followed by " + str(global_2nd_max_category_label) + " in " + str(global_2nd_max_category_xlabel) + ", and the minimum " + y_label + " is found for " + str(global_min_category_label) + " in " + str(global_min_category_xlabel) + ". ")
+                order_global.append(
+                    " In case of " + str(groupedLabels[0]) + " " + str(global_max_category_xlabel) + ", " + str(
+                        global_max_category_label) + " had the highest " + y_label + " " + str(
+                        global_max) + " among the " + str(number_of_group) + " groups and in " + str(
+                        global_min_category_xlabel) + ", " + str(
+                        global_min_category_label) + " had the lowest " + y_label + " " + str(
+                        global_min) + ". The second highest " + y_label + " " + str(
+                        global_2nd_max) + " was observed for " + str(global_2nd_max_category_label) + " in " + str(
+                        groupedLabels[0]) + " " + str(global_2nd_max_category_xlabel) + ". ")
+                order_global.append(
+                    " " + str(global_max_category_label) + " had the maximum " + y_label + " out of all " + str(
+                        number_of_group) + " groups in " + str(groupedLabels[0]) + " " + str(
+                        global_max_category_xlabel) + " followed by " + str(
+                        global_2nd_max_category_label) + " in " + str(
+                        global_2nd_max_category_xlabel) + ", and the minimum " + y_label + " is found for " + str(
+                        global_min_category_label) + " in " + str(global_min_category_xlabel) + ". ")
 
                 order_extrema = order_global[random.randint(0, len(order_global) - 1)]
                 print("Order [Extrema(max/min)] : " + order_global[random.randint(0, len(order_global) - 1)])
 
-
             x_label = str(stringLabels[0])
-
 
             intro = []
 
             if x_label.lower() == "month" or x_label.lower() == "year" or x_label.lower() == "months" or x_label.lower() == "years":
-                intro.append("This is a grouped bar chart showing " + y_label + " on the Y-axis throughout " + str(rowCount) + " " + x_label + "s for " + categories + " on the X-axis. ")
-                intro.append("This grouped bar chart represents " + y_label + " on the Y-axis. And, its value throughout " + str(rowCount) + " " + x_label + "s for " + categories + ". ")
-                intro.append("This grouped bar chart represents " + y_label + " on the Y-axis. And, how the value changed throughout " + str(rowCount) + " " + x_label + "s for " + categories + ". ")
+                intro.append("This is a grouped bar chart showing " + y_label + " on the Y-axis throughout " + str(
+                    rowCount) + " " + x_label + "s for " + categories + " on the X-axis. ")
+                intro.append(
+                    "This grouped bar chart represents " + y_label + " on the Y-axis. And, its value throughout " + str(
+                        rowCount) + " " + x_label + "s for " + categories + ". ")
+                intro.append(
+                    "This grouped bar chart represents " + y_label + " on the Y-axis. And, how the value changed throughout " + str(
+                        rowCount) + " " + x_label + "s for " + categories + ". ")
             else:
-                intro.append("This grouped bar chart represents " + str(rowCount) + " different " + x_label + "s on X-axis for " + str(number_of_group) + " groups " + categories + ". On the Y-axis it shows their corresponding " + y_label + ". ")
-                intro.append("This grouped bar chart shows " + y_label + " on the Y-axis for " + str(rowCount) + " different " + x_label + "s for " + str(number_of_group) + " groups " + categories + " that are presented on the X-axis. ")
+                intro.append("This grouped bar chart represents " + str(
+                    rowCount) + " different " + x_label + "s on X-axis for " + str(
+                    number_of_group) + " groups " + categories + ". On the Y-axis it shows their corresponding " + y_label + ". ")
+                intro.append("This grouped bar chart shows " + y_label + " on the Y-axis for " + str(
+                    rowCount) + " different " + x_label + "s for " + str(
+                    number_of_group) + " groups " + categories + " that are presented on the X-axis. ")
 
             intro_summary = intro[random.randint(0, len(intro) - 1)]
 
             summary1 = f"This grouped bar chart has {rowCount} categories of {stringLabels[0]} on the x axis representing {str(number_of_group)} groups: {categories}."
-
 
             min_summary = []
             mid_summary = []
@@ -934,7 +1028,6 @@ def summarize(data, all_y_label, name, title, partial=None):
             print("Sorted Y vals")
             print(yVals_sorted)
 
-
             ###### Order/Rank of all lines
 
             # print(sortedLines)
@@ -961,7 +1054,6 @@ def summarize(data, all_y_label, name, title, partial=None):
                 # print(slice2)
                 max_xVal_ofTopmost = slice2
 
-
             meanOfTopmost = mean(yVals_sorted[topmostLineIndex]).round(2)
             # print(meanOfTopmost)
 
@@ -983,7 +1075,6 @@ def summarize(data, all_y_label, name, title, partial=None):
                 slice2 += ", and " + max_xVal_ofBotommost[-1]
                 # print(slice2)
                 max_xVal_ofBotommost = slice2
-
 
             meanOfBotommost = mean(yVals[bottomostLineIndex]).round(2)
             # print(meanOfBotommost)
@@ -1055,7 +1146,6 @@ def summarize(data, all_y_label, name, title, partial=None):
 
             minLineNames = commaAnd(minLineNames)
             minLine_xVals = commaAnd(minLine_xVals)
-
 
             ############# GlobalTrend ##############
             direction = []
@@ -1404,7 +1494,7 @@ def summarize(data, all_y_label, name, title, partial=None):
                 ## Talks about the topmost line
             summary2 = []
             summary2.append("During this period, " + str(maxLine[
-                                                                0]) + " generally had the highest " + y_label + " relative to others" + " with an average of " + str(
+                                                             0]) + " generally had the highest " + y_label + " relative to others" + " with an average of " + str(
                 meanOfTopmost) + ", and it reached its maximum at " + str(
                 max_xVal_ofTopmost) + " with a value of " + str(
                 max_yVal_ofTopmost) + ". ")  # revised
@@ -1672,8 +1762,6 @@ def summarize(data, all_y_label, name, title, partial=None):
                 if yValueArr[a] == sortedDataY[2]:
                     thirdMaxIndex = a
 
-
-
             position_in_X_axis_for_second_max_value = str(xValueArr[secondMaxIndex])
             position_in_X_axis_for_second_max_value = position_in_X_axis_for_second_max_value.replace("_", " ")
             y_axis_for_second_max_value = str(yValueArr[secondMaxIndex])
@@ -1683,7 +1771,6 @@ def summarize(data, all_y_label, name, title, partial=None):
 
             position_in_X_axis_for_third_max_value = str(xValueArr[thirdMaxIndex]).replace("_", " ")
             y_axis_for_third_max_value = str(yValueArr[thirdMaxIndex])
-            
 
         num_of_category = str(len(xValueArr))
         position_in_X_axis_for_max_value = str(xValueArr[maxValueIndex])
@@ -1745,23 +1832,27 @@ def summarize(data, all_y_label, name, title, partial=None):
 
         # run bar
         elif (chartType == "bar"):
-            secondMaxIndex= 0  # to deal with error: local variable 'secondMaxIndex' referenced before assignment
+            secondMaxIndex = 0  # to deal with error: local variable 'secondMaxIndex' referenced before assignment
 
             intro = []
-            intro.append("This is a bar chart representing " + xLabel + " in the x axis and " + yLabel + " in the y axis. ")
-            intro.append("This bar chart has " + str(len(xValueArr)) + " columns on the x axis representing " + xLabel + ", and " + yLabel + " in each " + xLabel + " on the y axis. ")
-            intro.append("This is a bar chart. It shows " + yLabel + " for " + str(len(xValueArr)) + " number of " + xLabel + "s. ")
-            print("INTRO : " + intro[random.randint(0, len(intro) -1)])
+            intro.append(
+                "This is a bar chart representing " + xLabel + " in the x axis and " + yLabel + " in the y axis. ")
+            intro.append("This bar chart has " + str(
+                len(xValueArr)) + " columns on the x axis representing " + xLabel + ", and " + yLabel + " in each " + xLabel + " on the y axis. ")
+            intro.append("This is a bar chart. It shows " + yLabel + " for " + str(
+                len(xValueArr)) + " number of " + xLabel + "s. ")
+            print("INTRO : " + intro[random.randint(0, len(intro) - 1)])
             print(intro)
 
-
-            summaryArray.append(intro[random.randint(0, len(intro) -1)])
+            summaryArray.append(intro[random.randint(0, len(intro) - 1)])
 
             # Extrema [max/min]
 
             summary2_extrema_max_min = []
             summary2_extrema_max_min.append(
-                "The maximum " + yLabel + " " + str(yValueArr[maxValueIndex]) + " is found at " + xLabel + " " + position_in_X_axis_for_max_value + " and the minimum is found at " + position_in_X_axis_for_min_value + " where " + yLabel + " is " + str(yValueArr[minValueIndex]) + ". ")
+                "The maximum " + yLabel + " " + str(yValueArr[
+                                                        maxValueIndex]) + " is found at " + xLabel + " " + position_in_X_axis_for_max_value + " and the minimum is found at " + position_in_X_axis_for_min_value + " where " + yLabel + " is " + str(
+                    yValueArr[minValueIndex]) + ". ")
             summary2_extrema_max_min.append(
                 "The " + yLabel + " is highest at " + xLabel + " " + position_in_X_axis_for_max_value + " and lowest at " + xLabel + " " + position_in_X_axis_for_min_value + ". ")
             summary2_extrema_max_min.append(
@@ -1795,14 +1886,17 @@ def summarize(data, all_y_label, name, title, partial=None):
                 print("global_trend_text")
                 print(global_trend_text)
 
-
             # Order [position]
             summary3_order_2nd_max = []
             if len(xValueArr) > 2:
-                summary3_order_2nd_max.append("The second highest " + yLabel + " is appeared to be the " + xLabel + " " + position_in_X_axis_for_second_max_value + ". ")
-                summary3_order_2nd_max.append("Second maximum " + yLabel + " is found at " + xLabel + " " + position_in_X_axis_for_second_max_value + ". ")
-                summary3_order_2nd_max.append(xLabel + " " + position_in_X_axis_for_second_max_value + " has the second highest value for " + yLabel + ". ")
-                print("Order [position] : " + summary3_order_2nd_max[random.randint(0, len(summary3_order_2nd_max) - 1)])
+                summary3_order_2nd_max.append(
+                    "The second highest " + yLabel + " is appeared to be the " + xLabel + " " + position_in_X_axis_for_second_max_value + ". ")
+                summary3_order_2nd_max.append(
+                    "Second maximum " + yLabel + " is found at " + xLabel + " " + position_in_X_axis_for_second_max_value + ". ")
+                summary3_order_2nd_max.append(
+                    xLabel + " " + position_in_X_axis_for_second_max_value + " has the second highest value for " + yLabel + ". ")
+                print(
+                    "Order [position] : " + summary3_order_2nd_max[random.randint(0, len(summary3_order_2nd_max) - 1)])
 
             print("summary3_order_2nd_max")
             print(summary3_order_2nd_max)
@@ -1810,32 +1904,58 @@ def summarize(data, all_y_label, name, title, partial=None):
             # Order [rank]
             summary_order_rank = []
             if len(xValueArr) > 3:
-                summary_order_rank.append("The " + xLabel + " " + position_in_X_axis_for_max_value + " has the highest " + yLabel + ", followed by " + position_in_X_axis_for_second_max_value + ", and " + position_in_X_axis_for_third_max_value + ". Down to the " + xLabel + " " + position_in_X_axis_for_min_value + " which is the lowest. ")
-                summary_order_rank.append(xLabel + " " + position_in_X_axis_for_max_value + " is higher than any other " + xLabel + "s with value " + str(yValueArr[maxValueIndex]) + ", followed by " + position_in_X_axis_for_second_max_value + ", and " + position_in_X_axis_for_third_max_value + ". Down to " + xLabel + " " + position_in_X_axis_for_min_value + " with the lowest value " + str(yValueArr[minValueIndex]) + ". ")
-                summary_order_rank.append(yLabel + " at " + xLabel + " " + position_in_X_axis_for_max_value + " is " + str(yValueArr[maxValueIndex]) + " , second place is " + position_in_X_axis_for_second_max_value + " at " + str(yValueArr[secondMaxIndex]) + ", and thirdly is " + position_in_X_axis_for_third_max_value + " at " + str(yValueArr[thirdMaxIndex]) + ". ")
+                summary_order_rank.append(
+                    "The " + xLabel + " " + position_in_X_axis_for_max_value + " has the highest " + yLabel + ", followed by " + position_in_X_axis_for_second_max_value + ", and " + position_in_X_axis_for_third_max_value + ". Down to the " + xLabel + " " + position_in_X_axis_for_min_value + " which is the lowest. ")
+                summary_order_rank.append(
+                    xLabel + " " + position_in_X_axis_for_max_value + " is higher than any other " + xLabel + "s with value " + str(
+                        yValueArr[
+                            maxValueIndex]) + ", followed by " + position_in_X_axis_for_second_max_value + ", and " + position_in_X_axis_for_third_max_value + ". Down to " + xLabel + " " + position_in_X_axis_for_min_value + " with the lowest value " + str(
+                        yValueArr[minValueIndex]) + ". ")
+                summary_order_rank.append(
+                    yLabel + " at " + xLabel + " " + position_in_X_axis_for_max_value + " is " + str(yValueArr[
+                                                                                                         maxValueIndex]) + " , second place is " + position_in_X_axis_for_second_max_value + " at " + str(
+                        yValueArr[
+                            secondMaxIndex]) + ", and thirdly is " + position_in_X_axis_for_third_max_value + " at " + str(
+                        yValueArr[thirdMaxIndex]) + ". ")
 
                 print("Order [rank] : " + summary_order_rank[random.randint(0, len(summary_order_rank) - 1)])
                 summaryArray.append(summary_order_rank[random.randint(0, len(summary_order_rank) - 1)])
 
-
             # Comparison [Absolute]
             comparison_abs = []
-            comparison_abs.append("There is a difference of " + str(round(max_min_diff, 2)) + " between the maximum " + xLabel + " " + position_in_X_axis_for_max_value + " and minimum " + xLabel + " " + position_in_X_axis_for_min_value + ". ")
-            comparison_abs.append("The difference of " + yLabel + " between the highest and lowest " + xLabel + " is " + str(round(max_min_diff, 2)) + ". ")
-            comparison_abs.append("The highest " + xLabel + " " + position_in_X_axis_for_max_value + " has " + str(round(max_min_diff, 2)) + " more " + yLabel + " than the lowest " + xLabel + " " + position_in_X_axis_for_min_value + ". ")
+            comparison_abs.append("There is a difference of " + str(round(max_min_diff,
+                                                                          2)) + " between the maximum " + xLabel + " " + position_in_X_axis_for_max_value + " and minimum " + xLabel + " " + position_in_X_axis_for_min_value + ". ")
+            comparison_abs.append(
+                "The difference of " + yLabel + " between the highest and lowest " + xLabel + " is " + str(
+                    round(max_min_diff, 2)) + ". ")
+            comparison_abs.append("The highest " + xLabel + " " + position_in_X_axis_for_max_value + " has " + str(
+                round(max_min_diff,
+                      2)) + " more " + yLabel + " than the lowest " + xLabel + " " + position_in_X_axis_for_min_value + ". ")
 
             print("Comparison [Absolute] : " + comparison_abs[random.randint(0, len(comparison_abs) - 1)])
 
             # Comparison [Relative]
             comparison_rel = []
-            comparison_rel.append(xLabel + " " + position_in_X_axis_for_max_value + " has " + str(proportion) + " times more " + yLabel + " than " + xLabel + " " + position_in_X_axis_for_min_value + " which is has the lowest. ")
-            comparison_rel.append(xLabel + " " + position_in_X_axis_for_min_value + " has " + str(proportion) + " times less " + yLabel + " than " + xLabel + " " + position_in_X_axis_for_max_value + " which is the highest. ")
-            comparison_rel.append("The highest value at " + xLabel + " " + position_in_X_axis_for_max_value + " is " + str(proportion) + "x times more than the lowest value at " + position_in_X_axis_for_min_value + ". ")
-            comparison_rel.append("The lowest value at " + xLabel + " " + position_in_X_axis_for_min_value + " is " + str(proportion) + "x times less than the highest value at " + position_in_X_axis_for_max_value + ". ")
-            comparison_rel.append("The " + yLabel + " of " + xLabel + " " + position_in_X_axis_for_max_value + " is " + str(proportion) + "% larger than the minimum value at " + position_in_X_axis_for_min_value + ". ")
-            comparison_rel.append("The " + yLabel + " of " + xLabel + " " + position_in_X_axis_for_min_value + " is " + str(proportion) + "% smaller than the maximum value at " + position_in_X_axis_for_max_value + ". ")
-            comparison_rel.append("The maximum " + xLabel + " " + position_in_X_axis_for_max_value + " has got " + str(proportion) + " times higher " + yLabel + " than the minimum " + xLabel + " " + position_in_X_axis_for_min_value + ". ")
-            comparison_rel.append("The minimum " + xLabel + " " + position_in_X_axis_for_min_value + " has got " + str(proportion) + " times less " + yLabel + " than the maximum " + xLabel + " " + position_in_X_axis_for_max_value + ". ")
+            comparison_rel.append(xLabel + " " + position_in_X_axis_for_max_value + " has " + str(
+                proportion) + " times more " + yLabel + " than " + xLabel + " " + position_in_X_axis_for_min_value + " which is has the lowest. ")
+            comparison_rel.append(xLabel + " " + position_in_X_axis_for_min_value + " has " + str(
+                proportion) + " times less " + yLabel + " than " + xLabel + " " + position_in_X_axis_for_max_value + " which is the highest. ")
+            comparison_rel.append(
+                "The highest value at " + xLabel + " " + position_in_X_axis_for_max_value + " is " + str(
+                    proportion) + "x times more than the lowest value at " + position_in_X_axis_for_min_value + ". ")
+            comparison_rel.append(
+                "The lowest value at " + xLabel + " " + position_in_X_axis_for_min_value + " is " + str(
+                    proportion) + "x times less than the highest value at " + position_in_X_axis_for_max_value + ". ")
+            comparison_rel.append(
+                "The " + yLabel + " of " + xLabel + " " + position_in_X_axis_for_max_value + " is " + str(
+                    proportion) + "% larger than the minimum value at " + position_in_X_axis_for_min_value + ". ")
+            comparison_rel.append(
+                "The " + yLabel + " of " + xLabel + " " + position_in_X_axis_for_min_value + " is " + str(
+                    proportion) + "% smaller than the maximum value at " + position_in_X_axis_for_max_value + ". ")
+            comparison_rel.append("The maximum " + xLabel + " " + position_in_X_axis_for_max_value + " has got " + str(
+                proportion) + " times higher " + yLabel + " than the minimum " + xLabel + " " + position_in_X_axis_for_min_value + ". ")
+            comparison_rel.append("The minimum " + xLabel + " " + position_in_X_axis_for_min_value + " has got " + str(
+                proportion) + " times less " + yLabel + " than the maximum " + xLabel + " " + position_in_X_axis_for_max_value + ". ")
 
             print("Comparison [Relative] : " + comparison_rel[random.randint(0, len(comparison_rel) - 1)])
 
@@ -1847,22 +1967,34 @@ def summarize(data, all_y_label, name, title, partial=None):
             # Compute derived val [avg]
             derived_val_avg = []
             derived_val_avg.append(
-                "The average " + yLabel + " in all " + str(len(yValueArr)) + " " + xLabel + "s is " + str(round(avgValueOfAllBars , 2)) + ". ")
+                "The average " + yLabel + " in all " + str(len(yValueArr)) + " " + xLabel + "s is " + str(
+                    round(avgValueOfAllBars, 2)) + ". ")
             derived_val_avg.append("The average " + yLabel + " in all " + str(
-                len(yValueArr)) + " " + xLabel + "s is roughly " + str(round(avgValueOfAllBars , 2)) + ". ")
+                len(yValueArr)) + " " + xLabel + "s is roughly " + str(round(avgValueOfAllBars, 2)) + ". ")
 
             print("Compute derived val [avg] : " + derived_val_avg[random.randint(0, len(derived_val_avg) - 1)])
 
             # Comparison [Relative, vs Avg]
             comparison_rel_with_avg = []
-            comparison_rel_with_avg.append("The highest value " + str(yValueArr[maxValueIndex]) + " at " + position_in_X_axis_for_max_value + " is almost " + str(max_avg_diff_rel) + " times larger than the average value " + str(round(avgValueOfAllBars, 2)) + ". ")
-            comparison_rel_with_avg.append("The lowest value " + str(yValueArr[minValueIndex]) + " at " + position_in_X_axis_for_min_value + " is almost " + str(max_avg_diff_rel) + " times smaller than the average value " + str(round(avgValueOfAllBars, 2)) + ". ")
-            comparison_rel_with_avg.append("The " + xLabel + " " + position_in_X_axis_for_max_value + " has " + str(max_avg_diff_rel) + " times more " + yLabel + " than average. ")
-            comparison_rel_with_avg.append("The " + xLabel + " " + position_in_X_axis_for_min_value + " has " + str(max_avg_diff_rel) + " times less " + yLabel + " than average. ")
-            comparison_rel_with_avg.append("The " + xLabel + " " + position_in_X_axis_for_max_value + " tends to be " + str(max_avg_diff_rel) + " percent higher than average. ")
-            comparison_rel_with_avg.append("The " + xLabel + " " + position_in_X_axis_for_min_value + " tends to be " + str(max_avg_diff_rel) + " percent lower than average. ")
+            comparison_rel_with_avg.append("The highest value " + str(
+                yValueArr[maxValueIndex]) + " at " + position_in_X_axis_for_max_value + " is almost " + str(
+                max_avg_diff_rel) + " times larger than the average value " + str(round(avgValueOfAllBars, 2)) + ". ")
+            comparison_rel_with_avg.append("The lowest value " + str(
+                yValueArr[minValueIndex]) + " at " + position_in_X_axis_for_min_value + " is almost " + str(
+                max_avg_diff_rel) + " times smaller than the average value " + str(round(avgValueOfAllBars, 2)) + ". ")
+            comparison_rel_with_avg.append("The " + xLabel + " " + position_in_X_axis_for_max_value + " has " + str(
+                max_avg_diff_rel) + " times more " + yLabel + " than average. ")
+            comparison_rel_with_avg.append("The " + xLabel + " " + position_in_X_axis_for_min_value + " has " + str(
+                max_avg_diff_rel) + " times less " + yLabel + " than average. ")
+            comparison_rel_with_avg.append(
+                "The " + xLabel + " " + position_in_X_axis_for_max_value + " tends to be " + str(
+                    max_avg_diff_rel) + " percent higher than average. ")
+            comparison_rel_with_avg.append(
+                "The " + xLabel + " " + position_in_X_axis_for_min_value + " tends to be " + str(
+                    max_avg_diff_rel) + " percent lower than average. ")
 
-            print("Comparison [Relative, vs Avg] : " + comparison_rel_with_avg[random.randint(0, len(comparison_rel_with_avg) - 1)])
+            print("Comparison [Relative, vs Avg] : " + comparison_rel_with_avg[
+                random.randint(0, len(comparison_rel_with_avg) - 1)])
 
             if float(random.uniform(0, 1)) > 0.75:
                 summaryArray.append(comparison_rel_with_avg[random.randint(0, len(comparison_rel_with_avg) - 1)])
@@ -1871,8 +2003,10 @@ def summarize(data, all_y_label, name, title, partial=None):
 
             # Compute derived val [sum]
             sum_text = []
-            sum_text.append("The " + yLabel + " is " + str(round(totalValue, 2)) + " if we add up values of all " + xLabel + "s. ")
-            sum_text.append("Summing up the values of all " + xLabel + "s, we get total " + str(round(totalValue, 2)) + ". ")
+            sum_text.append(
+                "The " + yLabel + " is " + str(round(totalValue, 2)) + " if we add up values of all " + xLabel + "s. ")
+            sum_text.append(
+                "Summing up the values of all " + xLabel + "s, we get total " + str(round(totalValue, 2)) + ". ")
 
             print("Compute derived val [sum] : " + sum_text[random.randint(0, len(sum_text) - 1)])
             summaryArray.append(sum_text[random.randint(0, len(sum_text) - 1)])
@@ -1899,19 +2033,20 @@ def summarize(data, all_y_label, name, title, partial=None):
                     else:
                         shared_value_labels += str(most_freq_x_label[a]).replace('_', ' ') + ", "
 
-                shared_value.append(xLabel + " " + shared_value_labels + " have a similar " + yLabel + " that is " + str(most_freq_value) + ". ")
-                shared_value.append(xLabel + " " + shared_value_labels + " share the same value " + str(most_freq_value) + ". ")
+                shared_value.append(
+                    xLabel + " " + shared_value_labels + " have a similar " + yLabel + " that is " + str(
+                        most_freq_value) + ". ")
+                shared_value.append(
+                    xLabel + " " + shared_value_labels + " share the same value " + str(most_freq_value) + ". ")
                 shared_value.append(xLabel + " " + shared_value_labels + " have the same " + yLabel + ". ")
                 shared_value.append("Similar " + yLabel + " is found in " + xLabel + " " + shared_value_labels + ". ")
 
-                print("Compute derived val [shared value] : " + shared_value[random.randint(0, len(shared_value) -1)])
+                print("Compute derived val [shared value] : " + shared_value[random.randint(0, len(shared_value) - 1)])
                 summaryArray.append(shared_value[random.randint(0, len(shared_value) - 1)])
-
 
             min_summary = []
             mid_summary = []
             max_summary = []
-
 
             min_summary.append(random.choice(intro))
             min_summary.append(random.choice(summary2_extrema_max_min))
@@ -1926,7 +2061,6 @@ def summarize(data, all_y_label, name, title, partial=None):
                 mid_summary.append(random.choice(comparison_rel))
             else:
                 mid_summary.append(random.choice(comparison_abs))
-
 
             max_summary.append(random.choice(intro))
             max_summary.append(random.choice(summary2_extrema_max_min))
@@ -2037,7 +2171,6 @@ def summarize(data, all_y_label, name, title, partial=None):
                 yValueArrCorrectOrder[0])
             globalPercentChange = (globalDifference / float(yValueArr[len(yValueArr) - 1])) * 100
 
-
             ############# LocalTrend ##############
             varianceArray = []
 
@@ -2053,12 +2186,10 @@ def summarize(data, all_y_label, name, title, partial=None):
                     old)  # 2nd yVal- Prev yVal # Note that xValueArr and yValueArr are ordered such that the start values are written at the end of the array
                 localPercentChange = (variance1 / float(old)) * 100
 
-
                 varianceArray.append(variance1)
                 percentArray.append(localPercentChange)
                 # directionArray.append(d)
                 i = i + 1
-
 
             varianceArrayCorrectOrder = varianceArray  # varianceArray[len(varianceArray)::-1]  ## Ordered correctly this time
             percentArrayCorrectOrder = percentArray  # percentArray[len(percentArray)::-1]  ## Ordered correctly this time
@@ -2438,7 +2569,6 @@ def summarize(data, all_y_label, name, title, partial=None):
 
             # COMPARISON
 
-
             print("")
             print("")
             print("######################################")
@@ -2643,7 +2773,6 @@ def summarize(data, all_y_label, name, title, partial=None):
 
             print("max_summary:   " + str(max_summary) + "/n")
 
-
             summaryArray = mid_summary
 
             dataJson = [{xLabel: xVal, yLabel: yVal} for xVal, yVal in zip(cleanXArr, cleanYArr)]
@@ -2659,7 +2788,6 @@ def summarize(data, all_y_label, name, title, partial=None):
                 json.dump(websiteInput, websiteFile, indent=3)
             # oneFile.writelines(''.join(summaryArray) + '\n')
 
-
     if partial is True:
         summaryArray.pop(0)
 
@@ -2669,11 +2797,7 @@ def summarize(data, all_y_label, name, title, partial=None):
         summaryStr += summaryArray[a]
 
     return summaryStr
-    
-   
-    
-    
-    
+
 
 # input_data = "Year|2010|x|line_chart Trade_in_thousands_metric_tons|57152.3|y|line_chart Year|2009|x|line_chart Trade_in_thousands_metric_tons|44580.8|y|line_chart Year|2008|x|line_chart Trade_in_thousands_metric_tons|62685.1|y|line_chart Year|2007|x|line_chart Trade_in_thousands_metric_tons|59961.2|y|line_chart Year|2006|x|line_chart Trade_in_thousands_metric_tons|42992.7|y|line_chart "
 #
@@ -2684,8 +2808,6 @@ def summarize(data, all_y_label, name, title, partial=None):
 pie_chart = "Strategy|advertising|x|pie_chart Amount|20|y|pie_chart Strategy|email|x|pie_chart Amount|40|y|pie_chart Strategy|sale_offers|x|pie_chart Amount|25|y|pie_chart Strategy|leaflet|x|pie_chart Amount|10|y|pie_chart "
 scatter = "Manufacturer|Nabisco|0|scatter_chart Calories|50|1|scatter_chart Protein_(g)|1|2|scatter_chart Manufacturer|Quaker_Oats|0|scatter_chart Calories|115|1|scatter_chart Protein_(g)|2.5|2|scatter_chart Manufacturer|Kelloggs|0|scatter_chart Calories|75|1|scatter_chart Protein_(g)|3|2|scatter_chart Manufacturer|Kelloggs|0|scatter_chart Calories|63|1|scatter_chart Protein_(g)|4|2|scatter_chart Manufacturer|Ralston_Purina|0|scatter_chart Calories|160|1|scatter_chart Protein_(g)|5|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|130|1|scatter_chart Protein_(g)|6|2|scatter_chart Manufacturer|Kelloggs|0|scatter_chart Calories|89|1|scatter_chart Protein_(g)|7|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|70|1|scatter_chart Protein_(g)|1|2|scatter_chart Manufacturer|Ralston_Purina|0|scatter_chart Calories|140|1|scatter_chart Protein_(g)|2|2|scatter_chart Manufacturer|Post|0|scatter_chart Calories|135|1|scatter_chart Protein_(g)|3|2|scatter_chart Manufacturer|Quaker_Oats|0|scatter_chart Calories|85|1|scatter_chart Protein_(g)|4|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|80|1|scatter_chart Protein_(g)|6|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|127|1|scatter_chart Protein_(g)|5|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|140|1|scatter_chart Protein_(g)|7|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|145|1|scatter_chart Protein_(g)|1|2|scatter_chart Manufacturer|Ralston_Purina|0|scatter_chart Calories|90|1|scatter_chart Protein_(g)|2|2|scatter_chart Manufacturer|Kelloggs|0|scatter_chart Calories|111|1|scatter_chart Protein_(g)|1|2|scatter_chart Manufacturer|Kelloggs|0|scatter_chart Calories|63|1|scatter_chart Protein_(g)|3|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|57|1|scatter_chart Protein_(g)|4|2|scatter_chart Manufacturer|Kelloggs|0|scatter_chart Calories|82|1|scatter_chart Protein_(g)|5|2|scatter_chart Manufacturer|Nabisco|0|scatter_chart Calories|72|1|scatter_chart Protein_(g)|6|2|scatter_chart Manufacturer|Kelloggs|0|scatter_chart Calories|132|1|scatter_chart Protein_(g)|7|2|scatter_chart Manufacturer|General_Mills|0|scatter_chart Calories|142|1|scatter_chart Protein_(g)|5|2|scatter_chart "
 
-
-
 # line1 = "Year|2018|x|line_chart Sales_volume_in_millions|12.88|y|line_chart Year|2017|x|line_chart Sales_volume_in_millions|13.51|y|line_chart Year|2016|x|line_chart Sales_volume_in_millions|16.17|y|line_chart Year|2015|x|line_chart Sales_volume_in_millions|15.94|y|line_chart Year|2014|x|line_chart Sales_volume_in_millions|15.46|y|line_chart Year|2013|x|line_chart Sales_volume_in_millions|13.5|y|line_chart Year|2012|x|line_chart Sales_volume_in_millions|15.85|y|line_chart Year|2011|x|line_chart Sales_volume_in_millions|13.82|y|line_chart Year|2010|x|line_chart Sales_volume_in_millions|11.78|y|line_chart Year|2009|x|line_chart Sales_volume_in_millions|12.99|y|line_chart Year|2008|x|line_chart Sales_volume_in_millions|13.0|y|line_chart Year|2007|x|line_chart Sales_volume_in_millions|8.18|y|line_chart Year|2006|x|line_chart Sales_volume_in_millions|5.0|y|line_chart Year|2005|x|line_chart Sales_volume_in_millions|3.2|y|line_chart Year|2004|x|line_chart Sales_volume_in_millions|2.03|y|line_chart "
 line1 = "Year|2018|x|line_chart Sales_volume_in_millions|1288|y|line_chart Year|2017|x|line_chart Sales_volume_in_millions|1351|y|line_chart Year|2016|x|line_chart Sales_volume_in_millions|1617|y|line_chart Year|2015|x|line_chart Sales_volume_in_millions|1594|y|line_chart Year|2014|x|line_chart Sales_volume_in_millions|1546|y|line_chart Year|2013|x|line_chart Sales_volume_in_millions|135|y|line_chart Year|2012|x|line_chart Sales_volume_in_millions|1585|y|line_chart Year|2011|x|line_chart Sales_volume_in_millions|1382|y|line_chart Year|2010|x|line_chart Sales_volume_in_millions|1178|y|line_chart Year|2009|x|line_chart Sales_volume_in_millions|1299|y|line_chart Year|2008|x|line_chart Sales_volume_in_millions|130|y|line_chart Year|2007|x|line_chart Sales_volume_in_millions|818|y|line_chart Year|2006|x|line_chart Sales_volume_in_millions|50|y|line_chart Year|2005|x|line_chart Sales_volume_in_millions|32|y|line_chart Year|2004|x|line_chart Sales_volume_in_millions|203|y|line_chart "
 
@@ -2693,14 +2815,13 @@ line2 = "Year|2019|x|line_chart Net_income_in_million_U.S._dollars|15119|y|line_
 
 bar1 = "Month|Dec_19|x|bar_chart Units_sold|708|y|bar_chart Month|Nov_19|x|bar_chart Units_sold|157|y|bar_chart Month|Oct_19|x|bar_chart Units_sold|88|y|bar_chart Month|Sep_19|x|bar_chart Units_sold|526|y|bar_chart Month|Aug_19|x|bar_chart Units_sold|52|y|bar_chart Month|Jul_19|x|bar_chart Units_sold|103|y|bar_chart Month|Jun_19|x|bar_chart Units_sold|244|y|bar_chart Month|May_19|x|bar_chart Units_sold|138|y|bar_chart Month|Apr_19|x|bar_chart Units_sold|101|y|bar_chart Month|Mar_19|x|bar_chart Units_sold|632|y|bar_chart Month|Feb_19|x|bar_chart Units_sold|74|y|bar_chart Month|Jan_19|x|bar_chart Units_sold|174|y|bar_chart Month|Dec_18|x|bar_chart Units_sold|193|y|bar_chart Month|Nov_18|x|bar_chart Units_sold|145|y|bar_chart Month|Oct_18|x|bar_chart Units_sold|135|y|bar_chart Month|Sep_18|x|bar_chart Units_sold|829|y|bar_chart Month|Aug_18|x|bar_chart Units_sold|100|y|bar_chart Month|Jul_18|x|bar_chart Units_sold|112|y|bar_chart Month|Jun_18|x|bar_chart Units_sold|265|y|bar_chart Month|May_18|x|bar_chart Units_sold|231|y|bar_chart Month|Apr_18|x|bar_chart Units_sold|153|y|bar_chart Month|Mar_18|x|bar_chart Units_sold|761|y|bar_chart Month|Feb_18|x|bar_chart Units_sold|62|y|bar_chart Month|Jan_18|x|bar_chart Units_sold|155|y|bar_chart Month|Dec_17|x|bar_chart Units_sold|246|y|bar_chart Month|Nov_17|x|bar_chart Units_sold|216|y|bar_chart Month|Oct_17|x|bar_chart Units_sold|99|y|bar_chart Month|Sep_17|x|bar_chart Units_sold|510|y|bar_chart Month|Aug_17|x|bar_chart Units_sold|44|y|bar_chart Month|Jul_17|x|bar_chart Units_sold|152|y|bar_chart Month|Jun_17|x|bar_chart Units_sold|202|y|bar_chart Month|May_17|x|bar_chart Units_sold|155|y|bar_chart Month|Apr_17|x|bar_chart Units_sold|123|y|bar_chart Month|Mar_17|x|bar_chart Units_sold|706|y|bar_chart Month|Feb_17|x|bar_chart Units_sold|48|y|bar_chart Month|Jan_17|x|bar_chart Units_sold|178|y|bar_chart Month|Dec_16|x|bar_chart Units_sold|330|y|bar_chart Month|Nov_16|x|bar_chart Units_sold|219|y|bar_chart Month|Oct_16|x|bar_chart Units_sold|256|y|bar_chart Month|Sep_16|x|bar_chart Units_sold|762|y|bar_chart Month|Aug_16|x|bar_chart Units_sold|69|y|bar_chart Month|Jul_16|x|bar_chart Units_sold|148|y|bar_chart "
 
+hchart1 = "Characteristic|Q3_'08|x|line_chart Number_of_users_in_millions|100|y|line_chart Characteristic|Q2_'09|x|line_chart Number_of_users_in_millions|242|y|line_chart Characteristic|Q4_'09|x|line_chart Number_of_users_in_millions|360|y|line_chart Characteristic|Q2_'10|x|line_chart Number_of_users_in_millions|482|y|line_chart Characteristic|Q4_'10|x|line_chart Number_of_users_in_millions|608|y|line_chart Characteristic|Q2_'11|x|line_chart Number_of_users_in_millions|739|y|line_chart Characteristic|Q4_'11|x|line_chart Number_of_users_in_millions|845|y|line_chart Characteristic|Q2_'12|x|line_chart Number_of_users_in_millions|955|y|line_chart Characteristic|Q4_'12|x|line_chart Number_of_users_in_millions|1056|y|line_chart Characteristic|Q2_'13|x|line_chart Number_of_users_in_millions|1155|y|line_chart Characteristic|Q4_'13|x|line_chart Number_of_users_in_millions|1228|y|line_chart Characteristic|Q2_'14|x|line_chart Number_of_users_in_millions|1317|y|line_chart Characteristic|Q4_'14|x|line_chart Number_of_users_in_millions|1393|y|line_chart Characteristic|Q2_'15|x|line_chart Number_of_users_in_millions|1490|y|line_chart Characteristic|Q4_'15|x|line_chart Number_of_users_in_millions|1591|y|line_chart Characteristic|Q2_'16|x|line_chart Number_of_users_in_millions|1712|y|line_chart Characteristic|Q4_'16|x|line_chart Number_of_users_in_millions|1860|y|line_chart Characteristic|Q2_'17|x|line_chart Number_of_users_in_millions|2006|y|line_chart Characteristic|Q4_'17|x|line_chart Number_of_users_in_millions|2129|y|line_chart Characteristic|Q2_'18|x|line_chart Number_of_users_in_millions|2234|y|line_chart Characteristic|Q4_'18|x|line_chart Number_of_users_in_millions|2320|y|line_chart Characteristic|Q2_'19|x|line_chart Number_of_users_in_millions|2414|y|line_chart Characteristic|Q4_'19|x|line_chart Number_of_users_in_millions|2498|y|line_chart Characteristic|Q2_'20|x|line_chart Number_of_users_in_millions|2701|y|line_chart Characteristic|Q4_'20|x|line_chart Number_of_users_in_millions|2797|y|line_chart"
 
+hchart6 = "Label|White|0|bar_chart Active_duty_enlisted_women|53.76|1|bar_chart Active_duty_enlisted_men|69.98|2|bar_chart Label|Black|0|bar_chart Active_duty_enlisted_women|29.22|1|bar_chart Active_duty_enlisted_men|16.82|2|bar_chart Label|American|0|bar_chart Active_duty_enlisted_women|1.42|1|bar_chart Active_duty_enlisted_men|1.2|2|bar_chart Label|Asian|0|bar_chart Active_duty_enlisted_women|4.8|1|bar_chart Active_duty_enlisted_men|4.28|2|bar_chart Label|Native|0|bar_chart Active_duty_enlisted_women|1.62|1|bar_chart Active_duty_enlisted_men|1.18|2|bar_chart Label|Two or more|0|bar_chart Active_duty_enlisted_women|4.5|1|bar_chart Active_duty_enlisted_men|3.01|2|bar_chart Label|Unknown|0|bar_chart Active_duty_enlisted_women|4.68|1|bar_chart Active_duty_enlisted_men|3.51|2|bar_chart Label|Hispanic|0|bar_chart Active_duty_enlisted_women|20.55|1|bar_chart Active_duty_enlisted_men|17.32|2|bar_chart "
 
-# output = summarize(data=bar1, all_y_label="yLabel", name="Partial", title="Partial", partial=False)
+# output = summarize(data=hchart6, all_y_label="yLabel", name="Partial", title="Partial", partial=False)
+# print("output")
 # print(output)
-
-
-
-
 
 ### USE THIS PORTION TO RUN ALL CHARTS AT ONCE WITH Y LABELS
 
@@ -2711,4 +2832,3 @@ bar1 = "Month|Dec_19|x|bar_chart Units_sold|708|y|bar_chart Month|Nov_19|x|bar_c
 #     for data, title, y_label in fileIterators:
 #         summarize(data=data, all_y_label=y_label.rstrip('\n'), name=count, title=title.rstrip('\n'))
 #         count += 1
-

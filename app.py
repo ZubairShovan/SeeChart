@@ -20,7 +20,7 @@ from flask import (
     send_from_directory,
     flash
 )
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask_restful import Api, Resource, reqparse, fields, marshal_with
 
 from BaselineSummarizer import summarize
@@ -39,7 +39,7 @@ context.load_cert_chain('certificate/server.crt', 'certificate/server.key')
 app = Flask(__name__, template_folder='templates')
 app.secret_key = 'somesecretkeythatonlyshovanshouldknow'
 api = Api(app)
-# CORS(app) c
+CORS(app)
 jsglue = JSGlue(app)
 
 screenshot_post_args = reqparse.RequestParser()
@@ -131,6 +131,15 @@ qna_post_args = reqparse.RequestParser()
 qna_post_args.add_argument("chart", type=str, help="chart")
 qna_post_args.add_argument("question", type=str, help="question")
 qna_post_args.add_argument("summary", type=str, help="summary")
+
+search_highchart_post_args = reqparse.RequestParser()
+search_highchart_post_args.add_argument("url", type=str, help="URL")
+search_highchart_post_args.add_argument("json_no", type=str, help="URL")
+
+search_highchart_resource_fields = {
+    'url': fields.String,
+    'json_no': fields.String
+}
 
 qna_resource_fields = {
     'chart': fields.String,
@@ -1008,6 +1017,32 @@ class Deconstruct(Resource):
         # return Response("{'decon': args['decon']}", status=201, mimetype='application/json')
 
 
+def find_json(url):
+    csv_file = csv.reader(open('recorded_data.csv', 'r'), delimiter=',')
+
+    for row in csv_file:
+        if url == row[3]:
+            print(row[4])
+            return row[4]
+
+    return False
+
+
+class SearchHighchart(Resource):
+
+    @marshal_with(search_highchart_resource_fields)
+    def post(self):
+        print('POST: SearchHighchart Called')
+        args = search_highchart_post_args.parse_args()
+
+        out = find_json(args['url'])
+
+        if out is not False:
+            return {'json_no': out}, 200
+        else:
+            return {'json_no': out}, 403
+
+
 class MultiLineLasso(Resource):
 
     @marshal_with(multi_line_lasso)
@@ -1479,6 +1514,7 @@ class search(Resource):
 api.add_resource(Screenshot, "/getScreenshot")
 api.add_resource(AddURL, "/addURL")
 api.add_resource(Deconstruct, "/decon")
+api.add_resource(SearchHighchart, "/high")
 api.add_resource(CrawlImage, "/crawlImage")
 api.add_resource(MultiLineLasso, "/multiLineLasso")
 api.add_resource(MultiBarLasso, "/multiBarLasso")
@@ -1494,7 +1530,8 @@ api.add_resource(qna, "/qna")
 
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port='8080', debug=True, ssl_context=context, threaded=True)
+    app.run(host='192.168.0.106', port='8080', debug=True, ssl_context=context, threaded=True)
+    # app.run(host='127.0.0.1', port='8080', debug=True, ssl_context=context, threaded=True)
 
 # if __name__ == '__main__':
 #     # Threaded option to enable multiple instances for multiple user access support

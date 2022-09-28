@@ -34,6 +34,15 @@
 
 </head>
 
+<script>
+    // console.log(GetURLParameter('chart'));
+
+    if (GetURLParameter('chart') != null) {
+        set_chart_id(GetURLParameter('chart'));
+    }
+
+</script>
+
 
 <body>
 
@@ -53,7 +62,17 @@
                 <button id="mic_button" style="width: 90px;" title="Click to ask a question"
                         onclick="runSpeechRecognition()"><i class="fa fa-microphone" aria-hidden="true"></i></button>
 
+
             </td>
+
+        </tr>
+        <!--        <tr>-->
+        <!--            <td width="100px">-->
+        <!--                <div id="output" class="hide"></div>-->
+        <!--                <span id="action"></span>-->
+        <!--            </td>-->
+        <!--        </tr>-->
+        <tr>
             <td width="100px">
                 <p id="search_result"
                    style="color: #000000; background-color: #e0e0e0; font-size: 17px; padding: 10px; margin-top: -25px;">
@@ -61,15 +80,6 @@
                     will
                     appear
                     here.</p>
-            </td>
-        </tr>
-        <tr>
-            <td width="100px">
-                <div id="output" class="hide"></div>
-                <span id="action"></span>
-            </td>
-            <td width="100px">
-
             </td>
         </tr>
     </table>
@@ -157,7 +167,7 @@
         <p id="summary" style="font-size: large"></p>
     </div>
 
-    <div class="Selector" id="selector_id" style="color: white;">
+    <div class="Selector" id="selector_id" style="color: white; display: none;">
 
         <div class="Label">
             <label id="numberLabel"></label>
@@ -293,10 +303,10 @@
 
                 document.addEventListener('keyup', event => {
 
-                    if (event.code === 'KeyF') {
+                    if (event.code === 'KeyF' && search_el !== document.activeElement) {
                         speakText("Search mode activated.")
                         search_el.focus();
-                    } else if (event.code === 'KeyQ') {
+                    } else if (event.code === 'KeyQ' && search_el !== document.activeElement) {
                         // speakText("Search mode activated.")
                         // search_el.focus();
                         runSpeechRecognition();
@@ -570,7 +580,7 @@
                             if (event.key === "Enter") {
                                 if (search_el.value !== null) {
                                     search_field();
-                                    search_el.value = null;
+                                    // search_el.value = null;
                                 }
                             } else if (event.code === 'KeyT' && (event.shiftKey || event.metaKey)) {
                                 if (search_el.value === null) {
@@ -939,8 +949,8 @@
                                     // construct an HTTP request
 
                                     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-                                    // var theUrl = "https://127.0.0.1:8080/multiBarBrush";
-                                    var theUrl = "https://127.0.0.1:8080/multiBarBrush";
+                                    // var theUrl = "https://192.168.0.106:8080/multiBarBrush";
+                                    var theUrl = "https://192.168.0.106:8080/multiBarBrush";
                                     xmlhttp.open("POST", theUrl);
 
                                     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -1030,7 +1040,7 @@
                                     var chartNumber = document.getElementById('chartNumber').value;
 
                                     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-                                    var theUrl = "https://127.0.0.1:8080/multiBarBrush";
+                                    var theUrl = "https://192.168.0.106:8080/multiBarBrush";
                                     xmlhttp.open("POST", theUrl);
 
                                     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -1100,8 +1110,8 @@
                                     var chartNumber = document.getElementById('chartNumber').value;
 
                                     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-                                    var theUrl = "https://127.0.0.1:8080/multiBarBrush";
-                                    // var theUrl = "https://127.0.0.1:8080/multiBarBrush";
+                                    var theUrl = "https://192.168.0.106:8080/multiBarBrush";
+                                    // var theUrl = "https://192.168.0.106:8080/multiBarBrush";
                                     xmlhttp.open("POST", theUrl);
 
                                     var a = JSON.stringify({
